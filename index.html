@@ -7,73 +7,43 @@
 <title>MTH Portal · El Juego Recién Empieza</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <style>
-:root {
-    --bg: #05060a; --panel: #0b0e14; --gold: #f2c14e; --gold2: #fff1c2;
-    --teal: #19d3e0; --ink: #f4eee0; --mut: #b3b8c2; --line: rgba(242,193,78,.45);
-}
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-    background: var(--bg); color: var(--ink);
-    font-family: system-ui, -apple-system, sans-serif;
-    padding-bottom: 80px; min-height: 100vh;
-}
-.wrap { max-width: 1000px; margin: 0 auto; }
-.top-nav {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 12px 15px; background: var(--bg);
-}
-.top-nav .logo { font-weight: 900; color: var(--gold); letter-spacing: 2px; font-size: 1.2rem; }
-.top-nav .logo span { color: var(--teal); font-weight: normal; font-size: 0.8rem; }
-.btn-top {
-    background: rgba(25, 211, 224, 0.15); border: 1px solid var(--teal);
-    color: var(--teal); padding: 6px 12px; border-radius: 20px;
-    font-size: 0.75rem; text-decoration: none; font-weight: bold;
-}
-.hero { margin: 0 15px; border-radius: 16px; overflow: hidden; border: 1.5px solid var(--line); }
-.hero img { width: 100%; display: block; }
-.cta-container { padding: 15px; }
-.btn-gold {
-    display: block; width: 100%; text-align: center;
-    background: linear-gradient(180deg, var(--gold2), var(--gold));
-    color: #000; font-weight: 900; font-size: 1.1rem;
-    padding: 14px; border-radius: 12px; text-decoration: none;
-    box-shadow: 0 0 20px rgba(242,193,78,0.3);
-}
-.section-title { padding: 15px 15px 5px; font-size: 0.9rem; color: var(--gold2); font-weight: bold; }
-.avatares { display: flex; gap: 12px; overflow-x: auto; padding: 10px 15px; scrollbar-width: none; }
-.avatares::-webkit-scrollbar { display: none; }
-.avatar { flex: 0 0 80px; text-align: center; text-decoration: none; color: var(--ink); }
-.avatar img { width: 76px; height: 76px; border-radius: 50%; object-fit: cover; padding: 2px; background: linear-gradient(135deg, var(--gold), var(--teal)); margin-bottom: 5px; display: block; margin-left: auto; margin-right: auto; }
-.avatar span { font-size: 0.7rem; color: var(--mut); }
-.puertas { display: flex; flex-direction: column; gap: 15px; padding: 15px; }
-.card {
-    position: relative; border-radius: 16px; overflow: hidden; border: 1.5px solid var(--line);
-    text-decoration: none; color: #fff; display: flex; flex-direction: column;
-    justify-content: flex-end; aspect-ratio: 2/1;
-}
-.card img.fondo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
-.card::after {
-    content: ''; position: absolute; inset: 0;
-    background: linear-gradient(transparent 30%, rgba(5,6,10,0.95)); z-index: 2;
-}
-.card-info { position: relative; z-index: 3; padding: 15px; display: flex; justify-content: space-between; align-items: flex-end; }
-.card-info h3 { font-size: 1.2rem; margin-bottom: 4px; color: var(--gold2); }
-.card-info p { font-size: 0.8rem; color: var(--mut); }
-.btn-card { background: var(--gold); color: #000; padding: 8px 16px; border-radius: 20px; font-weight: bold; font-size: 0.8rem; white-space: nowrap; }
-.btn-card.teal { background: var(--teal); }
-.checks { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; padding: 15px; font-size: 0.7rem; color: var(--mut); }
-.checks span::before { content: '✓ '; color: var(--teal); font-weight: bold; }
-.bottom-bar {
-    position: fixed; bottom: 0; left: 0; right: 0; background: var(--panel);
-    border-top: 1px solid #222; display: flex; justify-content: space-around;
-    padding: 10px 0 calc(10px + env(safe-area-inset-bottom)); z-index: 20;
-}
-.bottom-bar a { color: var(--mut); text-decoration: none; font-size: 0.7rem; display: flex; flex-direction: column; align-items: center; gap: 4px; }
-.bottom-bar a i { font-size: 1.4rem; font-style: normal; }
-.bottom-bar a.u { color: var(--gold); font-weight: bold; }
-@media (min-width: 768px) {
-    .puertas { flex-direction: row; }
-    .card { flex: 1; aspect-ratio: 4/3; }
+:root{--bg:#05060a;--panel:#0b0e14;--gold:#f2c14e;--gold2:#fff1c2;--teal:#19d3e0;--ink:#f4eee0;--mut:#b3b8c2;--line:rgba(242,193,78,.45);--pad:clamp(12px,3vw,40px)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,sans-serif;padding-bottom:64px;min-height:100vh}
+.wrap{width:100%}
+.top-nav{display:flex;justify-content:space-between;align-items:center;padding:10px var(--pad)}
+.top-nav .logo{font-weight:900;color:var(--gold);letter-spacing:2px;font-size:1.2rem}
+.top-nav .logo span{color:var(--teal);font-weight:normal;font-size:.8rem}
+.btn-top{background:rgba(25,211,224,.15);border:1px solid var(--teal);color:var(--teal);padding:6px 12px;border-radius:20px;font-size:.75rem;text-decoration:none;font-weight:bold}
+.hero{margin:0 var(--pad);border-radius:16px;overflow:hidden;border:1.5px solid var(--line)}
+.hero img{width:100%;display:block}
+.cta-container{padding:14px var(--pad)}
+.btn-gold{display:block;width:100%;text-align:center;background:linear-gradient(180deg,var(--gold2),var(--gold));color:#000;font-weight:900;font-size:1.1rem;padding:14px;border-radius:12px;text-decoration:none;box-shadow:0 0 20px rgba(242,193,78,.3)}
+.section-title{padding:10px var(--pad) 4px;font-size:1rem;color:var(--gold2);font-weight:bold}
+.avatares{display:flex;gap:12px;overflow-x:auto;padding:8px var(--pad);scrollbar-width:none}
+.avatares::-webkit-scrollbar{display:none}
+.avatar{flex:0 0 80px;text-align:center;text-decoration:none;color:var(--ink)}
+.avatar img{width:76px;height:76px;border-radius:50%;object-fit:cover;padding:2px;background:linear-gradient(135deg,var(--gold),var(--teal));margin:0 auto 5px;display:block}
+.avatar span{font-size:.75rem;color:var(--mut)}
+.puertas{display:grid;grid-template-columns:1fr;gap:14px;padding:10px var(--pad)}
+.card{border-radius:16px;overflow:hidden;border:1.5px solid var(--line);text-decoration:none;color:#fff;background:var(--panel);display:flex;flex-direction:column}
+.card img.fondo{width:100%;aspect-ratio:3/1;object-fit:cover;display:block}
+.card-info{padding:10px 14px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.card-info h3{font-size:1.05rem;margin-bottom:2px;color:var(--gold2)}
+.card-info p{font-size:.8rem;color:var(--mut)}
+.btn-card{background:var(--gold);color:#000;padding:8px 16px;border-radius:20px;font-weight:bold;font-size:.8rem;white-space:nowrap}
+.btn-card.teal{background:var(--teal)}
+.checks{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;padding:12px var(--pad);font-size:.75rem;color:var(--mut)}
+.checks span::before{content:'✓ ';color:var(--teal);font-weight:bold}
+.bottom-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(11,14,20,.96);border-top:1px solid #222;display:flex;justify-content:center;gap:clamp(28px,10vw,140px);padding:6px 0 calc(6px + env(safe-area-inset-bottom));z-index:20}
+.bottom-bar a{color:var(--mut);text-decoration:none;font-size:.7rem;display:flex;flex-direction:column;align-items:center;gap:2px}
+.bottom-bar a i{font-size:1.2rem;font-style:normal}
+.bottom-bar a.u{color:var(--gold);font-weight:bold}
+@media(min-width:768px){
+.avatares{display:grid;grid-template-columns:repeat(10,1fr);overflow:visible}
+.avatar img{width:clamp(76px,8vw,140px);height:auto;aspect-ratio:1}
+.avatar span{font-size:.9rem}
+.puertas{grid-template-columns:repeat(3,1fr)}
 }
 </style>
 </head>
@@ -83,7 +53,7 @@ body {
         <div class="logo">MTH <span>PORTAL</span></div>
         <a href="https://t.me/ApoloAureum_Bot?start=portal" class="btn-top">Unirte es gratis · +18</a>
     </div>
-    <header class="hero"><img src="portal.jpg" alt="MTH · El juego recién empieza"></header>
+    <header class="hero"><img src="portal.png" alt="MTH · El juego recién empieza"></header>
     <div class="cta-container"><a href="https://t.me/ApoloAureum_Bot?start=portal" class="btn-gold">Únete gratis</a></div>
     <div class="section-title">¿Qué haces tú?</div>
     <div class="avatares">
