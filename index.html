@@ -7,89 +7,88 @@
 <title>MTH Portal · El Juego Recién Empieza</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <style>
-:root{--bg:#05060a;--panel:#0b0e14;--gold:#f2c14e;--gold2:#fff1c2;--teal:#19d3e0;--ink:#f4eee0;--mut:#b3b8c2;--line:rgba(242,193,78,.45);--pad:clamp(12px,3vw,40px)}
+:root{--bg:#05060a;--panel:#0d1118;--gold:#f2c14e;--gold2:#fff1c2;--teal:#19d3e0;--ink:#f4eee0;--mut:#b3b8c2;--line:rgba(242,193,78,.4);--g:clamp(6px,1.2vh,14px)}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,sans-serif;padding-bottom:64px;min-height:100vh}
-.wrap{width:100%}
-.top-nav{display:flex;justify-content:space-between;align-items:center;padding:10px var(--pad)}
-.top-nav .logo{font-weight:900;color:var(--gold);letter-spacing:2px;font-size:1.2rem}
-.top-nav .logo span{color:var(--teal);font-weight:normal;font-size:.8rem}
-.btn-top{background:rgba(25,211,224,.15);border:1px solid var(--teal);color:var(--teal);padding:6px 12px;border-radius:20px;font-size:.75rem;text-decoration:none;font-weight:bold}
-.hero{margin:0 var(--pad);border-radius:16px;overflow:hidden;border:1.5px solid var(--line)}
-.hero img{width:100%;display:block}
-.cta-container{padding:14px var(--pad)}
-.btn-gold{display:block;width:100%;text-align:center;background:linear-gradient(180deg,var(--gold2),var(--gold));color:#000;font-weight:900;font-size:1.1rem;padding:14px;border-radius:12px;text-decoration:none;box-shadow:0 0 20px rgba(242,193,78,.3)}
-.section-title{padding:10px var(--pad) 4px;font-size:1rem;color:var(--gold2);font-weight:bold}
-.avatares{display:flex;gap:12px;overflow-x:auto;padding:8px var(--pad);scrollbar-width:none}
-.avatares::-webkit-scrollbar{display:none}
-.avatar{flex:0 0 80px;text-align:center;text-decoration:none;color:var(--ink)}
-.avatar img{width:76px;height:76px;border-radius:50%;object-fit:cover;padding:2px;background:linear-gradient(135deg,var(--gold),var(--teal));margin:0 auto 5px;display:block}
-.avatar span{font-size:.75rem;color:var(--mut)}
-.puertas{display:grid;grid-template-columns:1fr;gap:14px;padding:10px var(--pad)}
-.card{border-radius:16px;overflow:hidden;border:1.5px solid var(--line);text-decoration:none;color:#fff;background:var(--panel);display:flex;flex-direction:column}
-.card img.fondo{width:100%;aspect-ratio:3/1;object-fit:cover;display:block}
-.card-info{padding:10px 14px;display:flex;justify-content:space-between;align-items:center;gap:10px}
-.card-info h3{font-size:1.05rem;margin-bottom:2px;color:var(--gold2)}
-.card-info p{font-size:.8rem;color:var(--mut)}
-.btn-card{background:var(--gold);color:#000;padding:8px 16px;border-radius:20px;font-weight:bold;font-size:.8rem;white-space:nowrap}
-.btn-card.teal{background:var(--teal)}
-.checks{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;padding:12px var(--pad);font-size:.75rem;color:var(--mut)}
-.checks span::before{content:'✓ ';color:var(--teal);font-weight:bold}
-.bottom-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(11,14,20,.96);border-top:1px solid #222;display:flex;justify-content:center;gap:clamp(28px,10vw,140px);padding:6px 0 calc(6px + env(safe-area-inset-bottom));z-index:20}
-.bottom-bar a{color:var(--mut);text-decoration:none;font-size:.7rem;display:flex;flex-direction:column;align-items:center;gap:2px}
-.bottom-bar a i{font-size:1.2rem;font-style:normal}
-.bottom-bar a.u{color:var(--gold);font-weight:bold}
-@media(min-width:768px){
-.avatares{display:grid;grid-template-columns:repeat(10,1fr);overflow:visible}
-.avatar img{width:clamp(76px,8vw,140px);height:auto;aspect-ratio:1}
-.avatar span{font-size:.9rem}
-.puertas{grid-template-columns:repeat(3,1fr)}
+html,body{height:100%;overflow:hidden;background:var(--bg)}
+body{color:var(--ink);font-family:system-ui,-apple-system,sans-serif;height:100dvh;display:flex;flex-direction:column;gap:var(--g);padding:var(--g) clamp(10px,2.5vw,36px) calc(var(--g) + env(safe-area-inset-bottom));justify-content:space-evenly}
+a{text-decoration:none;color:inherit}
+.top{display:flex;justify-content:space-between;align-items:center;flex:none}
+.logo{font-weight:900;color:var(--gold);letter-spacing:2px;font-size:clamp(1rem,2.4vh,1.6rem)}
+.logo span{color:var(--teal);font-weight:600;font-size:.6em;letter-spacing:3px}
+.flags{font-size:clamp(.8rem,2.2vh,1.4rem);letter-spacing:1px;white-space:nowrap;overflow:hidden;text-align:right;flex:1;margin-left:12px}
+.hero{flex:0 1 auto;min-height:0;display:flex;justify-content:center;align-items:center}
+.hero img{max-width:100%;max-height:100%;border-radius:14px;border:1.5px solid var(--line);display:block}
+.lbl{font-weight:800;color:var(--gold2);font-size:clamp(.85rem,2vh,1.25rem);flex:none}
+.roles{display:grid;grid-template-columns:repeat(10,1fr);gap:var(--g);flex:none}
+.rol{text-align:center;cursor:pointer;background:none;border:0;color:var(--mut);font:inherit;font-size:clamp(.62rem,1.6vh,1rem)}
+.rol img{width:100%;max-width:clamp(44px,10vh,120px);aspect-ratio:1;border-radius:50%;object-fit:cover;padding:2px;background:linear-gradient(135deg,var(--gold),var(--teal));display:block;margin:0 auto 3px;transition:.2s}
+.rol.on{color:var(--gold);font-weight:800}
+.rol.on img{transform:scale(1.08);box-shadow:0 0 16px var(--gold)}
+.cta{flex:none;display:flex;flex-direction:column;gap:4px}
+.msg{font-size:clamp(.75rem,1.8vh,1.1rem);color:var(--mut);text-align:center;min-height:1.3em}
+.msg b{color:var(--teal)}
+.btn{display:block;text-align:center;background:linear-gradient(180deg,var(--gold2),var(--gold));color:#000;font-weight:900;font-size:clamp(1rem,2.6vh,1.6rem);padding:clamp(10px,1.8vh,18px);border-radius:14px;box-shadow:0 0 22px rgba(242,193,78,.35)}
+.doors{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--g);flex:none}
+.door{background:var(--panel);border:1.5px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.door img{width:100%;aspect-ratio:3/1;object-fit:contain;background:#000;display:block;max-height:16vh}
+.door .i{padding:clamp(6px,1.2vh,12px) clamp(8px,1vw,14px);display:flex;justify-content:space-between;align-items:center;gap:8px}
+.door h3{font-size:clamp(.85rem,2vh,1.3rem);color:var(--gold2)}
+.door p{font-size:clamp(.65rem,1.5vh,.95rem);color:var(--mut)}
+.door .b{background:var(--gold);color:#000;font-weight:800;border-radius:20px;padding:6px 14px;font-size:clamp(.7rem,1.6vh,1rem);white-space:nowrap}
+.door .b.t{background:var(--teal)}
+.foot{flex:none;text-align:center;font-size:clamp(.6rem,1.4vh,.9rem);color:var(--mut)}
+.foot span{margin:0 6px}.foot span::before{content:'✓ ';color:var(--teal)}
+@media(max-width:700px){
+.roles{grid-template-columns:repeat(5,1fr)}
+.doors{grid-template-columns:1fr}
+.door{flex-direction:row;align-items:center}
+.door img{width:42%;max-height:none}
+.door .i{flex:1;flex-direction:column;align-items:flex-start;gap:4px}
+.flags{display:none}
+.rol img{max-width:54px}
+.rol{font-size:.62rem;white-space:nowrap}
+.door img{width:36%}
+.door .i{padding:6px 10px}
+.msg{font-size:.72rem}
 }
 </style>
 </head>
 <body>
-<div class="wrap">
-    <div class="top-nav">
-        <div class="logo">MTH <span>PORTAL</span></div>
-        <a href="https://t.me/ApoloAureum_Bot?start=portal" class="btn-top">Unirte es gratis · +18</a>
-    </div>
-    <header class="hero"><img src="portal.png" alt="MTH · El juego recién empieza"></header>
-    <div class="cta-container"><a href="https://t.me/ApoloAureum_Bot?start=portal" class="btn-gold">Únete gratis</a></div>
-    <div class="section-title">¿Qué haces tú?</div>
-    <div class="avatares">
-        <a href="https://t.me/ApoloAureum_Bot?start=portal_gamer" class="avatar"><img src="01_gamer.png" alt="Gamer"><span>Gamer</span></a>
-        <a href="https://t.me/ApoloAureum_Bot?start=portal_stream" class="avatar"><img src="02_streamer.png" alt="Streamer"><span>Streamer</span></a>
-        <a href="https://t.me/ApoloAureum_Bot?start=portal_creador" class="avatar"><img src="03_creadora.png" alt="Creadora"><span>Creadora</span></a>
-        <a href="https://t.me/ApoloAureum_Bot?start=portal_canto" class="avatar"><img src="04_cantante.png" alt="Canto"><span>Canto</span></a>
-        <a href="https://t.me/ApoloAureum_Bot?start=portal_dj" class="avatar"><img src="05_dj.png" alt="DJ"><span>DJ</span></a>
-        <a href="https://t.me/ApoloAureum_Bot?start=portal_baile" class="avatar"><img src="06_bailarina.png" alt="Baile"><span>Baile</span></a>
-        <a href="https://t.me/ApoloAureum_Bot?start=portal_podcast" class="avatar"><img src="08_podcast.png" alt="Podcast"><span>Podcast</span></a>
-        <a href="https://t.me/ApoloAureum_Bot?start=portal_musica" class="avatar"><img src="09_musico.png" alt="Música"><span>Música</span></a>
-        <a href="https://t.me/ApoloAureum_Bot?start=portal_amigos" class="avatar"><img src="10_amigos.png" alt="Solo conocer"><span>Solo conocer</span></a>
-        <a href="https://t.me/ApoloAureum_Bot?start=portal_modelo" class="avatar"><img src="07_modelo.png" alt="Modelo"><span>Modelo</span></a>
-    </div>
-    <div class="section-title">Entra</div>
-    <main class="puertas">
-        <a href="https://oceaunposeidon-bot.github.io/MEGA-TRIBU-HISPANA-MINI-APP-OFICIAL/" class="card"><img class="fondo" src="megatribu.jpg" alt="Mega Tribu"><div class="card-info"><div><h3>Mega Tribu Hispana</h3><p>Comunidad · Alianzas</p></div><span class="btn-card">Entrar</span></div></a>
-        <a href="https://oceaunposeidon-bot.github.io/POSEIDON-OCEANUS-MINI-APP-OFICIAL/" class="card"><img class="fondo" src="poseidon.jpg" alt="Poseidón"><div class="card-info"><div><h3>Poseidón Oceanus</h3><p>Planes VIP · Stars</p></div><span class="btn-card teal">Ver planes</span></div></a>
-        <a href="https://t.me/DreamTeamSinFronteras" class="card"><img class="fondo" src="11_dream_team.png" alt="Dream Team"><div class="card-info"><div><h3>Dream Team</h3><p>Hispanos sin Fronteras</p></div><span class="btn-card">Unirme</span></div></a>
-    </main>
-    <div class="checks"><span>Gratis</span><span>Sin contraseñas</span><span>Sales cuando quieras</span><span>Solo +18</span></div>
+<div class="top">
+  <div class="logo">MTH <span>PORTAL</span></div>
+  <div class="flags">🇦🇷🇧🇴🇨🇱🇨🇴🇨🇷🇨🇺🇪🇨🇸🇻🇪🇸🇬🇹🇭🇳🇲🇽🇳🇮🇵🇦🇵🇾🇵🇪🇵🇷🇩🇴🇺🇾🇻🇪</div>
 </div>
-<nav class="bottom-bar">
-    <a class="u" href="https://t.me/ApoloAureum_Bot?start=portal"><i>🦁</i>Únete</a>
-    <a href="https://t.me/MegaTribuHispana"><i>📢</i>Canal</a>
-    <a href="https://t.me/DreamTeamSinFronteras"><i>🌎</i>Grupo</a>
-    <a href="https://t.me/PoseidonOceanus_Bot"><i>🔱</i>VIP</a>
-</nav>
+<div class="hero"><img src="portal.png" alt="MTH · El juego recién empieza"></div>
+<div class="lbl">¿Qué haces tú? <small style="color:var(--mut);font-weight:400">— toca tu perfil</small></div>
+<div class="roles" id="roles"></div>
+<div class="cta">
+  <div class="msg" id="msg">Elige tu perfil y entra con tu lugar reservado en la tribu.</div>
+  <a class="btn" id="go" href="https://t.me/ApoloAureum_Bot?start=portal">Únete gratis · +18</a>
+</div>
+<div class="doors">
+  <a class="door" href="https://oceaunposeidon-bot.github.io/MEGA-TRIBU-HISPANA-MINI-APP-OFICIAL/"><img src="megatribu.jpg" alt="Mega Tribu"><div class="i"><div><h3>Mega Tribu Hispana</h3><p>Comunidad y alianzas entre creadores</p></div><span class="b">Entrar</span></div></a>
+  <a class="door" href="https://oceaunposeidon-bot.github.io/POSEIDON-OCEANUS-MINI-APP-OFICIAL/"><img src="poseidon.jpg" alt="Poseidón"><div class="i"><div><h3>Poseidón Oceanus</h3><p>Planes VIP con Telegram Stars</p></div><span class="b t">Ver planes</span></div></a>
+  <a class="door" href="https://t.me/DreamTeamSinFronteras"><img src="11_dream_team.png" alt="Dream Team" style="object-position:center 35%"><div class="i"><div><h3>Dream Team</h3><p>Chat hispano sin fronteras</p></div><span class="b">Unirme</span></div></a>
+</div>
+<div class="foot"><span>Gratis</span><span>Sin contraseñas</span><span>Sales cuando quieras</span><span>Solo +18</span></div>
 <script>
-    const tg = window.Telegram?.WebApp;
-    if (tg) {
-        tg.ready(); tg.expand(); tg.setHeaderColor('#05060a');
-        document.querySelectorAll('a[href^="https://t.me"]').forEach(a => {
-            a.onclick = e => { if (tg.initData) { e.preventDefault(); tg.openTelegramLink(a.href); } };
-        });
-    }
+const R=[["gamer","Gamer","01_gamer.png","Torneos, clanes y gente para jugar y streamear juntos."],
+["stream","Streamer","02_streamer.png","Raids, colaboraciones y público hispano para tus directos."],
+["creador","Creadora","03_creadora.png","Alianzas con otras creadoras y difusión en el canal."],
+["canto","Canto","04_cantante.png","Duetos, covers y vitrina para tu voz."],
+["dj","DJ","05_dj.png","Sets, eventos y contacto con productores."],
+["baile","Baile","06_bailarina.png","Retos, colabs y vitrina para tus videos."],
+["podcast","Podcast","08_podcast.png","Invitados, entrevistas y audiencia nueva."],
+["musica","Música","09_musico.png","Bandas, músicos y lanzamientos en la tribu."],
+["amigos","Solo conocer","10_amigos.png","Gente buena onda de toda Hispanoamérica."],
+["modelo","Modelo","07_modelo.png","Sesiones, marcas y vitrina profesional."]];
+const box=document.getElementById('roles'),go=document.getElementById('go'),msg=document.getElementById('msg');
+R.forEach(([k,n,img,t])=>{const b=document.createElement('button');b.className='rol';b.innerHTML=`<img src="${img}" alt="${n}">${n}`;
+b.onclick=()=>{document.querySelectorAll('.rol').forEach(x=>x.classList.remove('on'));b.classList.add('on');
+msg.innerHTML=`<b>${n}:</b> ${t}`;go.textContent=`Entrar como ${n} · gratis`;go.href=`https://t.me/ApoloAureum_Bot?start=portal_${k}`;};box.appendChild(b);});
+const tg=window.Telegram?.WebApp;
+if(tg){tg.ready();tg.expand();tg.setHeaderColor('#05060a');}
+document.addEventListener('click',e=>{const a=e.target.closest('a[href^="https://t.me"]');if(a&&tg&&tg.initData){e.preventDefault();tg.openTelegramLink(a.href);}});
 </script>
 </body>
 </html>
